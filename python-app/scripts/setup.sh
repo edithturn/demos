@@ -6,6 +6,11 @@ export PGPASSWORD='password'
 echo "$SEPARATOR  Setup Demo: Docker, PostgreSQL with single-node Citus on port 5500 $SEPARATOR"
 sudo docker run -d --name citus_coordinator -p 5432:5432 -e POSTGRES_PASSWORD=$PGPASSWORD citusdata/citus
 
+sleep 10
+
+echo "Installing PostgreSQL Client"
+sudo apt-get install postgresql-client
+
 echo "$SEPARATOR Testing Citus Version $SEPARATOR"
 psql -U postgres -h localhost -d postgres -c "SELECT * FROM citus_version();"
 
