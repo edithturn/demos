@@ -18,15 +18,15 @@ echo "$SEPARATOR Creating Database $SEPARATOR"
 #psql -U postgres -h localhost -c "CREATE DATABASE startup;"
 psql -U postgres -h localhost -f ../sql/data.sql
 
-echo "$SEPARATOR Copy database files into Docker container $SEPARATOR"
-sudo docker cp ../csv/companies.csv citus_coordinator:.
-sudo docker cp ../csv/campaigns.csv citus_coordinator:.
-sudo docker cp ../csv/ads.csv citus_coordinator:.
+#echo "$SEPARATOR Copy database files into Docker container $SEPARATOR"
+#sudo docker cp ../csv/companies.csv citus_coordinator:.
+#sudo docker cp ../csv/campaigns.csv citus_coordinator:.
+#sudo docker cp ../csv/ads.csv citus_coordinator:.
 
 echo "$SEPARATOR Populating data into companies, campaigns and ads tables $SEPARATOR"
-psql -U postgres -h localhost -d postgres -c "\copy companies from 'companies.csv' with csv;"
-psql -U postgres -h localhost -d postgres -c "\copy campaigns from 'campaigns.csv' with csv;"
-psql -U postgres -h localhost -d postgres -c "\copy ads from 'ads.csv' with csv;"
+psql -U postgres -h localhost -d postgres -c "\copy companies from '../csv/companies.csv' with csv;"
+psql -U postgres -h localhost -d postgres -c "\copy campaigns from '../csv/campaigns.csv' with csv;"
+psql -U postgres -h localhost -d postgres -c "\copy ads from '../csv/ads.csv' with csv;"
 
 echo "$SEPARATOR List Data $SEPARATOR"
 psql -U postgres -h localhost -d postgres -t -A -c  "SELECT * FROM companies LIMIT 10;"
