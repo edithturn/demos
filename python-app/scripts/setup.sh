@@ -3,8 +3,11 @@
 SEPARATOR='=================='
 export PGPASSWORD='password'
 
-echo "Installing Pip"
-pip3 install psycopg2-binary
+echo "Installing Python"
+apt install python3 -y
+yes |  sudo apt install python3-pip
+#pip3 install psycopg2-binary
+apt install python3-psycopg2
 
 echo "$SEPARATOR  Setup Demo: Docker, PostgreSQL with single-node Citus on port 5500 $SEPARATOR"
 sudo docker run -d --name citus_coordinator -p 5432:5432 -e POSTGRES_PASSWORD=$PGPASSWORD citusdata/citus
