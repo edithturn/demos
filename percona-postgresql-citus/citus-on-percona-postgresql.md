@@ -68,3 +68,9 @@ SELECT s % 100, ('{"measurement":'||random()||'}')::jsonb FROM generate_series(1
 -- get the last 3 events for device 1, routed to a single node
 SELECT \* FROM events WHERE device_id = 1 ORDER BY event_time DESC, event_id DESC LIMIT 3;
 ```
+
+# results
+
+ <p align="center">
+    <img width="500" height="250" src="result.png">
+</p>
