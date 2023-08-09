@@ -3,6 +3,9 @@
 SEPARATOR='=================='
 export PGPASSWORD='password'
 
+echo "Installing Pip"
+pip3 install psycopg2-binary
+
 echo "$SEPARATOR  Setup Demo: Docker, PostgreSQL with single-node Citus on port 5500 $SEPARATOR"
 sudo docker run -d --name citus_coordinator -p 5432:5432 -e POSTGRES_PASSWORD=$PGPASSWORD citusdata/citus
 
@@ -28,7 +31,9 @@ psql -U postgres -h localhost -d postgres -c "\copy companies from '../csv/compa
 psql -U postgres -h localhost -d postgres -c "\copy campaigns from '../csv/campaigns.csv' with csv;"
 psql -U postgres -h localhost -d postgres -c "\copy ads from '../csv/ads.csv' with csv;"
 
-echo "$SEPARATOR List Data $SEPARATOR"
+echo "$SEPARATOR Listing companies $SEPARATOR"
 psql -U postgres -h localhost -d postgres -t -A -c  "SELECT * FROM companies LIMIT 10;"
+echo "$SEPARATOR Listing campaigns $SEPARATOR"
 psql -U postgres -h localhost -d postgres -t -A -c "SELECT * FROM campaigns LIMIT 10;" 
+echo "$SEPARATOR Listing ads $SEPARATOR"
 psql -U postgres -h localhost -d postgres -t -A -c "SELECT * FROM ads LIMIT 10;"
