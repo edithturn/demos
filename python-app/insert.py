@@ -11,7 +11,7 @@ conn = psycopg2.connect(
 #create_table_query = """
 #CREATE TABLE sharded_table (
 #    id SERIAL PRIMARY KEY,
-#    data TEXT
+#    data TEXTinsert.py 
 #)
 #DISTRIBUTED BY (id);
 #"""insert.py
@@ -20,9 +20,11 @@ conn = psycopg2.connect(
 #conn.commit()
 
 
-insert_query = "INSERT INTO companies VALUES (5000, 'Percona', 'https://randomurl/image.png', now(), now());"
+insert_query = "INSERT INTO companies VALUES (5001, 'Percona', 'https://randomurl/image.png', now(), now());"
 
 with conn.cursor() as cursor:
     for i in range(100):
         cursor.execute(insert_query, (f"Data {i}",))
 conn.commit()
+
+# Script python is not working
