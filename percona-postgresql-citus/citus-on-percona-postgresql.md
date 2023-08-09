@@ -72,5 +72,5 @@ SELECT \* FROM events WHERE device_id = 1 ORDER BY event_time DESC, event_id DES
 # results
 
  <p align="center">
-    <img width="500" height="250" src="result.png">
+    <img width="800" height="450" src="result.png">
 </p>
